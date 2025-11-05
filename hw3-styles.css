@@ -1,0 +1,410 @@
+/*
+Program name: hw3-styles.css
+Author: Tabitha Becker
+Date created: 2025-11-05
+Description: Styling file for patient form
+*/
+
+/*Setting background color and font family*/
+body{
+	background-color: #77A1B8;
+	min-width: fit-content;
+	color: white;
+	font-family: "Open Sans", sans-serif;
+}
+
+/*Creating form that centers in the middle of the background color and changing the color of form.
+Adding padding so that text will fit nicely in the form*/
+form{
+	background-color:#3B4F62;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	margin-right: 300px;
+	margin-left: 300px;
+	padding-top: 50px;
+	padding-bottom: 60px;
+	padding-left: 5%;
+	padding-right: 5%;
+	width: fit-content;
+	height:fit-content;
+}
+
+table{
+	width: 100%;
+	height: 100%;
+	text-align: left;
+	font-size: 50px;
+}
+
+/*Putting the date in the header to align on the bottom right corner of header.*/
+.todaydate{
+	font-size: 20px;
+	vertical-align: bottom;
+	padding-right: 18px;
+
+}
+
+/*Making section headers a different color and size to make them stand out*/
+.form-headers{
+	font-size: 20px;
+	color: #8DBCD6;
+}
+
+/*Floating the header image to the left of the header*/
+.header-image{
+	float: left;
+}
+
+/*Resizing the header image to fit better in the header*/
+img{
+	height: 80px;
+}
+
+/*Resizing the input boxes and adding margin for the outside of the boxes and padding for inside the boxes*/
+input{
+	width: 18%;
+	height: 25px;
+	padding: 5px;
+	margin: 8px;
+}
+
+/*Setting up the focus when user clicks in one of the text boxes*/
+input[type=email]:focus,[type=password]:focus,[type=address]:focus,[type=phone]:focus,[type=text]:focus, #health-form:focus, #state:focus, #dobValidate:focus {
+	background-color: lightblue;
+}
+
+/*Assigning font-size to the input labels*/
+.ptname, .ptinfo, .address, .address-2, .e-contact, .e-contactinfo, .instructions, .medhistory-1, .medhistory-2, .health, .password, .ptlang, .ptmarital, .health-slider, .slider-start, .slider-end, .footer, .currentDate {
+	font-size: 16px;
+}
+
+.errMsg {
+	display: none;
+	overflow: hidden;
+	transition: height 0.3s ease-in-out;
+	font-size: 15px;
+	width: 200px;
+	color: rgb(253, 20, 20);
+	text-align: left;
+}
+
+/*Creating the Red asterisk for the required fields*/
+#required:after{
+	content: "*";
+	color: red;
+}
+
+/*Creating several entries to have the boxes/labels fit correctly and align together*/
+.patientname{
+	width: 22%;
+	margin-left: 15px;
+}
+
+.e-contactname{
+	width: 32%;
+}
+
+.midname{
+	width: 10%;
+}
+
+#dobValidate{
+	width: 12%;
+}
+
+.gender {
+	margin: 1px;
+	width: 4%;
+	height: 18px;
+	padding: 0px;
+}
+
+.primelang {
+	margin: 0px;
+	width: 5%;
+	height: 18px;
+	padding: 0px;
+}
+
+.primelangtxt {
+	margin: 15px;
+	height: 18px;
+	padding-left: 10px;
+}
+
+.maritalstatus{
+	margin-top: 5px;
+	width: 5%;
+	height: 18px;
+	padding: 0px;
+	margin-bottom: 15px;
+}
+
+.address1{
+	width: 76%;
+	margin-left: 9px;
+}
+
+.address2{
+	width: 76%;
+}
+
+.city{
+	width: 26%;
+	margin-left: 44px;
+	
+}
+
+.statetxt{
+	margin-left: 20px;
+}
+
+.state{
+	width: 10%;
+	height: 40px;
+	font-size: 14px;
+	color: gray;
+	margin-left: 5px;
+}
+
+.zip{
+	width: 18%;
+	margin-left: 8px;
+}
+.ziptxt{
+	margin-left: 46px;
+}
+
+.phone{
+	margin-left: 28px;
+}
+
+.phone2{
+	margin-left: 40px;
+}
+	
+.phonetype{
+	margin: 0px;
+	width: 5%;
+	height: 18px;
+	padding: 0px;
+}
+
+.emailtext{
+	margin-left: 30px;
+}
+
+.email{
+	margin-left: 14px;
+	width: 20%;
+}
+
+/*To be able to make the med history checkboxes align, I added a flex box with flex direction as row*/
+.medhistory-1{
+	display: flex;
+	flex-direction: row;
+	width: 94%;
+	align-items: center;
+	padding-top: 14px;
+	padding-bottom: 12px;
+}
+
+.medhist-checkbox{
+	height: 18px;
+}
+
+/*Styling the textarea box, set up as a flex box, added padding, have a different background color 
+and adjust the font size and width*/
+.health-form{
+	display: flex;
+	flex-direction: row;
+	width: 95%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-left: 5px;
+	font-size: 16px;
+	text-align: left;
+	background-color: #E9F2F7;
+	resize: none;
+}
+
+.health-slider{
+	margin-top: 20px;
+	margin-bottom: 25px;
+}
+
+/*Slider is assigned inline box with different background, added a border, padding and some margin*/
+#slider{
+	display: inline;
+	background-color: #8DBCD6;
+	border: solid black;
+	color: black;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 15px;
+	margin-left: 20%;
+}
+
+#health-slide{
+	vertical-align: center;
+	height: 0px;
+	width: 30%;
+	margin-bottom: 50px;
+	
+}
+
+#sliderNums {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#username{
+	width: 40%;
+}
+
+#pass-text{
+	display: flex;
+	color:#8DBCD6;
+	font-weight: bold;
+	margin-top:30px;
+}
+
+#reqmstr{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: none;
+	margin-bottom: 30px;
+}
+
+/*Aligning the password requirements so they are spread out evenly and the bullet points are next to the words*/
+ul {
+	padding-left: 5px;
+}
+
+li {
+	margin-right: 70px;
+}
+#req1{
+	margin-left: 40px;
+}
+
+#password{
+	width: 20%;
+}
+#repeat-password{
+	width: 20%
+}
+
+.repeat-password{
+	margin-left: 20px;
+}
+
+.other {
+	color: white;
+}
+
+/* Changes the color of the password requirements to green when it matches requirements*/
+.valid {
+	color: rgb(91, 212, 91);
+}
+
+/* Changes the color of the password requirements to red when it doesn't match requirements*/
+.invalid{
+	color: rgb(247, 84, 84);
+}
+
+button{
+	width: 18%;
+	height: 48px;
+}
+
+/*Created a different color for the submit and reset buttons so it would be easier to see which you a clicking on*/
+button[type=button]{
+	background-color: rgb(65, 155, 220);
+	border: solid gray;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+button[type=submit]{
+	background-color: lightblue;
+	border: solid gray;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+button[type=reset]{
+	background-color: black;
+	border: solid black;
+	color: rgb(247, 84, 84);
+	
+	font-size: 16px;
+}
+
+button:hover{
+	background-color: #8DBCD6;
+}
+
+.submit-container{
+	display: inline;
+	background: #8DBCD6;
+}
+
+/*Styling the footer so it fits in a flex box and aligns as a row with padding*/
+.footer{
+	display: flex;
+	flex-direction: row;
+	vertical-align: top ;
+	color: whitesmoke;
+	padding: 10px;
+}
+
+/*Styling the social media links so they are aligned to the right and have spacing*/
+#links{
+	align-items: bottom;
+	margin-left: 52%;
+	padding: 10px;
+}
+#fb, #linkedin, #twitter {
+	height: 40px;
+	width: auto;
+}
+
+.footer-lines {
+	margin-top: 15px;;
+}
+
+#fnameErrorMsg, #midnameErrorMsg, #lnameErrorMsg, #dobErrorMsg, #emailErrorMsg, #ecFnameErrorMsg, #ecLnameErrorMsg, #phoneErrorMsg, #ecPhoneErrorMsg, #ecEmailErrorMsg, #dateErrorMsg, #ssnErrorMsg, #addressErrorMsg, #address2ErrorMsg, #cityErrorMsg, #zipErrorMsg, #userIdErrorMsg {
+	display: none;
+}
+
+.sliderNumbers {
+	text-align: bottom;
+}
+	
+#infoReview	{
+	color: whitesmoke(47, 44, 44);
+	font-size: 12px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-top: 20px;
+}
+
+.dataOutput {
+	font-size: 20px;
+	text-transform: lowercase;
+	font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	line-height: 1.5;
+}
+
+.dataOutput th {
+	font-size: 24px;
+	text-decoration-style: solid;
+	text-decoration: underline;
+	font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	line-height: 2.0;
+}

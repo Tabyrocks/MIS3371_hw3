@@ -1,0 +1,1111 @@
+<!--
+Program name: index.html
+Author: Tabitha Becker
+Date created: 2025-11-05
+Description: Creating patient registration form
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+      <meta charset="UTF-8">
+		
+      <title>Get Well Medical</title>
+
+			<!--Creating meta to set up viewport so content will resize correctly on multiple devices.-->
+			<meta 
+				name="viewport"
+				content="width=device-width, initial-scale=2.0"
+			>
+			
+			<!-- Loading external css styles -->
+			<link 
+				rel="stylesheet"
+				href="hw3-styles.css" 
+				>
+			<!-- Loading external Javascript file -->
+
+			
+  </head>
+
+  <body>
+		<!--Creating form and linking it to pop up the thankyou.html when form is submitted. 
+		Used https://profjake.w3spaces.com/MIS3371/homework3.html as a reference-->
+		<form 
+			name="med-signup"
+			id="medSignupFrm"
+			onreset="removeInput()"
+			action="hw3-thankyou.html"
+      method="get"
+        >
+			<table>
+				<thead>
+					<!--Creating header container, adding in logo with Company name and the current date-->
+					<tr class="header-container">
+						<th class="header-logo">
+							<img 
+								src="hw3-Images/Logo.png" 
+								alt="Get Well Medical Logo" 
+								id="logoimg" 
+								class="header-image"
+							>
+								Get Well Medical
+						</th>
+						<td>
+							<p
+								class="todaydate"
+								id="today"
+							>
+								Today's Date:
+								<span id="currentDate"></span>
+						</p>
+							
+						</td>
+					</tr>		
+				</thead>
+			</table>
+			<hr>
+			<hr>
+				<!-- Creating section header for the Patient Information-->
+				<table>
+					<tr>
+						<th 
+							class="form-headers" 
+							colspan="3" 
+						>
+							Patient Information
+						</th>
+						
+					</tr>
+				</table>
+			<hr>
+				<!-- Creating section for the patient information and adding in text to explain which are required fields-->
+				<table>	
+					<tbody>
+						<tr>
+							<h3 id="required">Required fields are denoted by </h3>
+							<td class="ptname">
+								<label 
+									for="fnameValidate"
+									id="required"
+								>
+									First Name
+								</label>
+									<input 
+										type="text" 
+										name="firstName" 
+										class="patientname"
+										id="fnameValidate" 
+										pattern="^([a-zA-Z]'?-?){1,30}$"
+										onblur="validateFname()"
+										placeholder="First Name" 
+										title="Example: Jane (Letters, apostrophes and dashes only - must be at least 1 characters long)"
+										minlength="1" 
+										maxlength="30" 
+										required
+									>
+									</input>
+
+								<label
+									for="midnameValidate">
+									MI
+								</label>
+									<input 
+										type="text" 
+										name="middleName" 
+										class="midname"
+										id="midnameValidate"
+										pattern="^[a-zA-Z]$"
+										onblur="validateMidname()"
+										placeholder="Middle Initial"
+										title="Example: M (1 character long - letter only)"
+										minlength="0" 
+										maxlength="1"
+									>
+									</input>
+							
+								<label
+									for="lnameValidate"
+									id="required"
+								>
+									Last Name
+								</label>
+									<input 
+										type="text" 
+										name="lastName" 
+										class="patientname"
+										id="lnameValidate"
+										pattern="^([a-zA-Z2-5]'?-?){1,30}$"
+										onblur="validateLname()"
+										placeholder="Last Name"
+										title="Example: Doe (Letters, numbers 2 - 5, apostrophes and dashes only - must be at least 1 characters long)" 
+										minlength="1" 
+										maxlength="30" 
+										required
+									>
+									</input>
+							</td>
+							<td>
+									<span class="errMsg" id="fnameErrorMsg"></span>
+									<span class="errMsg" id="midnameErrorMsg"></span>
+									<span class="errMsg" id="lnameErrorMsg"></span>
+							</td>
+						</tr>
+						<tr>
+							<td class="ptinfo">
+								<label
+									for="dobValidate"
+									id="required"
+								>
+									Date of Birth
+								</label>
+									<input 
+										type="date" 
+										name="dob" 
+										id="dobValidate" 
+										onblur="validateDob()"
+										placeholder="Date of Birth"
+										required
+									>
+									</input>
+								<label
+									for="ssnValidate"
+									id="required"
+								>
+									SSN
+								</label>
+									<input 
+										type="password" 
+										name="ssn" 
+										id="ssnValidate"
+										onblur="validateSsn()" 
+										placeholder="***-**-1234"
+										pattern="[0-9]{3,3}?[-]?[0-9]{2,2}?[-]?[0-9]{4,4}$"
+										title="Only numbers or dashes (no spaces) Example: 123-45-6789 or 123456789" 
+										minlength="9" 
+										maxlength="11" 
+										required
+									>
+									</input>
+								
+								<!--Adding radio boxes for Gender, primary language and marital status-->
+								<label>
+									Gender
+
+									<input 
+										type="radio" 
+										class="gender" 
+										name="gender" 
+										value="male"
+									>
+										Male
+									</input>
+									<input 
+										type="radio" 
+										class="gender" 
+										name="gender" 
+										value="female"
+									>
+										Female
+									</input>
+									<input 
+										type="radio" 
+										class="gender" 
+										name="gender" 
+										value="other"
+									>
+										Other
+									</input>
+								</label>
+							</td>	
+							<td>
+								<span class="errMsg" id="dateErrorMsg"></span>
+								<span class="errMsg" id="ssnErrorMsg"></span>
+							</td>
+						</tr>
+						<tr>
+							<td class="ptlang">
+								<label 
+									class="primelang"
+								>
+									Primary Language
+								
+									<input 
+										type="radio" 
+										class="primelang" 
+										name="primeLang" 
+										value="english"
+									>
+										English
+									</input>
+									<input 
+										type="radio" 
+										class="primelang" 
+										name="primeLang" 
+										value="spanish"
+									>
+										Spanish
+									</input>
+									<input 
+										type="radio" 
+										class="primelang" 
+										name="primeLang" 
+										value="other"
+									>
+										Other:
+									</input>
+								<!-- Adding input text box to freely type in an other language-->
+									<input 
+										type="text" 
+										class="primelangtxt"
+										name="primeLang-Txt"
+										title="If other button is picked - Type in your language" 
+										name="othertxt"
+									>
+									</input>
+								</label>
+							</td>	
+						</tr>
+						<tr>
+							<td class="ptmarital">
+								<label  
+									class="maritalstatus"
+								>
+									Marital Status
+								
+									<input 
+										type="radio" 
+										class="maritalstatus" 
+										name="maritalstatus" 
+										value="single"
+									>
+										Single
+									</input>
+									<input 
+										type="radio" 
+										class="maritalstatus" 
+										name="maritalstatus" 
+										value="married"
+									>
+										Married
+									</input>
+									<input 
+										type="radio" 
+										class="maritalstatus" 
+										name="maritalstatus" 
+										value="divorced"
+									>
+										Divorced
+									</input>
+									<input 
+										type="radio" 
+										class="maritalstatus" 
+										name="maritalstatus" 
+										value="widowed"
+									>
+										Widowed
+									</input>
+								</label>
+							</td>	
+						</tr>
+					</tbody>
+				<table>
+			<hr>
+				<!-- Creating section header for the Contact Information-->
+				<table>
+					<tr>
+						<th 
+							class="form-headers" 
+							colspan="3" 
+						>
+							Contact Information
+						</th>
+					</tr>
+				</table>
+			<hr>
+				<!-- Creating section for the contact information-->
+				<table>
+					<tbody>			
+						<tr>
+							<td class="address">
+								<label 
+									for="addressValidate"
+									id="required"
+								>
+									Address 
+								</label>
+									<input 
+										type="address" 
+										name="address" 
+										class="address1"
+										id="addressValidate"
+										onblur="validateAddress()"
+										autocomplete="off"
+										placeholder="Street Address"
+										title="Example: 123 Main Street (Between 2-30 characters long)"
+										minlength="2"
+										maxlength="30" 
+										required
+									>
+									</input>
+							</td>
+							<td>
+								<span class="errMsg" id="addressErrorMsg"></span>
+							</td>
+						</tr>
+						<tr>
+							<td class="address-2">
+								<label
+									for="address2Validate">
+									Address 2
+								</label>
+									<input 
+										type="address" 
+										name="address"
+										autocomplete="off"
+										onblur="validateAddress2() "
+										id="address2Validate"
+										class="address2" 
+										placeholder="Street Address Line 2"
+										title="Example: Apt 202 (Between 2-30 characters long)"
+										minlength="2"
+										maxlength="30"
+									>
+									</input>
+							</td>
+							<td>
+								<span class="errMsg" id="address2ErrorMsg"></span>
+							</td>
+						</tr>
+						<tr>
+							<td class="address">
+								<label
+									for="cityValidate" 
+									id="required"
+								>
+									City
+								</label>
+									<input 
+										type="text" 
+										name="city" 
+										class="city"
+										id="cityValidate"
+										onblur="validateCity() "
+										placeholder="City"
+										title="Example: Houston (Between 2-30 characters long)"
+										minlength="2"
+										maxlength="30"
+										required
+									>
+									</input>
+								
+								<!-- Making  the label and selection drop down list to pick the states-->
+								<label 
+									for="state"
+									class="statetxt"
+									id="required"
+								>
+									State
+								</label>
+									<select 
+										name="state" 
+										id="state" 
+										class="state"
+										title="Click on dropdown menu and select your state"
+										required
+									>
+											<!-- The option list was used from the below website:
+											FreeFormatter. (n.d.). USA state list HTML select snippet. Retrieved September 24, 2025, from https://www.freeformatter.com/usa-state-list-html-select.html.-->
+											<option value=" " disabled selected hidden>Choose One</option>
+											<option value="AL">Alabama</option>
+											<option value="AK">Alaska</option>
+											<option value="AZ">Arizona</option>
+											<option value="AR">Arkansas</option>
+											<option value="CA">California</option>
+											<option value="CO">Colorado</option>
+											<option value="CT">Connecticut</option>
+											<option value="DE">Delaware</option>
+											<option value="DC">District Of Columbia</option>
+											<option value="FL">Florida</option>
+											<option value="GA">Georgia</option>
+											<option value="HI">Hawaii</option>
+											<option value="ID">Idaho</option>
+											<option value="IL">Illinois</option>
+											<option value="IN">Indiana</option>
+											<option value="IA">Iowa</option>
+											<option value="KS">Kansas</option>
+											<option value="KY">Kentucky</option>
+											<option value="LA">Louisiana</option>
+											<option value="ME">Maine</option>
+											<option value="MD">Maryland</option>
+											<option value="MA">Massachusetts</option>
+											<option value="MI">Michigan</option>
+											<option value="MN">Minnesota</option>
+											<option value="MS">Mississippi</option>
+											<option value="MO">Missouri</option>
+											<option value="MT">Montana</option>
+											<option value="NE">Nebraska</option>
+											<option value="NV">Nevada</option>
+											<option value="NH">New Hampshire</option>
+											<option value="NJ">New Jersey</option>
+											<option value="NM">New Mexico</option>
+											<option value="NY">New York</option>
+											<option value="NC">North Carolina</option>
+											<option value="ND">North Dakota</option>
+											<option value="OH">Ohio</option>
+											<option value="OK">Oklahoma</option>
+											<option value="OR">Oregon</option>
+											<option value="PA">Pennsylvania</option>
+											<option value="RI">Rhode Island</option>
+											<option value="SC">South Carolina</option>
+											<option value="SD">South Dakota</option>
+											<option value="TN">Tennessee</option>
+											<option value="TX">Texas</option>
+											<option value="UT">Utah</option>
+											<option value="VT">Vermont</option>
+											<option value="VA">Virginia</option>
+											<option value="WA">Washington</option>
+											<option value="WV">West Virginia</option>
+											<option value="WI">Wisconsin</option>
+											<option value="WY">Wyoming</option>
+									</select>
+							
+								<label
+									for="zipValidate"
+									class="ziptxt"
+									id="required"
+								>
+									Zipcode
+								</label>
+									<input 
+										type="text" 
+										name="zip" 
+										class="zip"
+										id="zipValidate"
+										onblur="validateZip() "
+										pattern="^\d{5}(?:[-]\d{4})?$" 
+										placeholder="Zip Code"
+										title="(Must be 5 - 10 characters) Example: 90210 or 90210-2100"
+										minlength="5"
+										maxlength="10"
+										required
+									>
+									</input>
+							</td>
+							<td>
+								<span class="errMsg" id="cityErrorMsg"></span>
+								<span class="errMsg" id="zipErrorMsg"></span>
+							</td>
+						</tr>
+						<tr>
+							<td class="address">
+								<label 
+									for="phoneValidate"
+									id="required"
+								>
+									Phone
+								</label>
+									<input 
+										type="phone" 
+										name="phone"
+										autocomplete="off"
+										class="phone"
+										id="phoneValidate"
+										onblur="validatePhone()"
+										pattern="[0-9]{3,3}?[-]?[0-9]{3,3}?[-]?[0-9]{4,4}$"
+										placeholder="Phone Number"
+										title="Only numbers or dashes (no spaces) Example: 123-456-7890 or 1234567890"  
+										minlength="10"
+										maxlength="12"
+										required
+									>
+									</input>
+								
+								<!-- Creating radio buttons for the home or mobile phone number-->
+									<input 
+										type="radio" 
+										class="phonetype" 
+										name="phonetype1" 
+										value="home"
+									>
+										Home
+									</input>
+									<input 
+										type="radio" 
+										class="phonetype" 
+										name="phonetype1" 
+										value="mobile"
+									>
+										Mobile
+									</input>
+								<!--Adding in email with email type so it requires the @ symbol-->
+								<label
+									for="emailValidate"
+									class="emailtext"
+									id="required"
+								>
+									Email Address
+								</label>
+									<input 
+										type="email" 
+										name="email"
+										autocomplete="off"
+										class="email"
+										id="emailValidate"
+										onblur="validateEmail()"
+										pattern="^[a-zA-Z0-9._%+-]{5,30}+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+										placeholder="Email@Domain.com"
+										title="Example: Email@Domain.com" 
+										minlength="5"
+										maxlength="30"
+										required
+									>
+									</input>
+							</td>
+							<td>
+									<span class="errMsg" id="phoneErrorMsg"></span>
+									<span class="errMsg" id="emailErrorMsg"></span>
+
+							</td>
+						</tr>
+					</tbody>
+				</table>		
+			<hr>
+				<!-- Creating section header for the Emergency Contact Information-->
+				<table>
+					<tr>
+						<th 
+							class="form-headers" 
+							colspan="3" 
+						>
+							Emergency Contact
+						</th>
+					</tr>
+				</table>
+			<hr>			
+				<table>	
+					<tbody>
+						<tr>
+							<td class="e-contact">
+								<label
+									for="ecFnameValidate">
+									First Name
+								</label>
+									<input 
+										type="text" 
+										name="econtact-Fname" 
+										class="e-contactname"
+										id="ecFnameValidate"
+										onblur="validateEcFname() "
+										pattern="^([a-zA-Z]'?-?){2,30}$"
+										placeholder="First Name"
+										title="Example: Jane (Letters, apostrophes and dashes only - must be at least 2 characters long)"
+										minlength="2" 
+										maxlength="30"
+									>
+									</input>
+							
+								<label
+									for="ecLnameValidate">
+									Last Name
+								</label>
+									<input 
+										type="text" 
+										name="econtact-Lname" 
+										class="e-contactname"
+										id="ecLnameValidate"
+										onblur="validateEcLname()"
+										pattern="^([a-zA-Z]'?-?){2,30}$"
+										placeholder="Last Name"
+										title="Example: Doe (Letters, apostrophes and dashes only - must be at least 2 characters long)"
+										minlength="2"
+										maxlength="30"
+									>
+									</input>
+							</td>
+							<td>
+								<span class="errMsg" id="ecFnameErrorMsg"></span>
+								<span class="errMsg" id="ecLnameErrorMsg"></span>
+							</td>
+						</tr>
+						<tr>
+							<td class="e-contactinfo">
+								<label
+									for="ecPhoneValidate">
+									Phone
+								</label>
+									<input 
+										type="phone" 
+										name="econtact-Phonenum"
+										autocomplete="off"
+										class="phone2"
+										id="ecPhoneValidate"
+										onblur="validateEcPhone() "
+										pattern="[0-9]{3,3}?[-]?[0-9]{3,3}?[-]?[0-9]{4,4}$"
+										placeholder="Phone Number"
+										title="Only numbers or dashes (no spaces) Example: 123-456-7890 or 1234567890"
+										minlength="10"
+										maxlength="12"
+									>
+									</input>
+								
+								<!-- Creating radio buttons for the home or mobile phone number-->
+									<input 
+										type="radio" 
+										class="phonetype" 
+										name="econtactPhone" 
+										value="home"
+									>
+										Home
+									</input>
+									<input 
+										type="radio" 
+										class="phonetype" 
+										name="econtactPhone" 
+										value="mobile"
+									>
+										Mobile
+									</input>
+							
+								<label 
+									for="ecEmailValidate"
+									class="emailtext"
+								>
+									Email Address
+								</label>
+									<input 
+										type="email" 
+										name="econtact-Email"
+										autocomplete="off" 
+										class="email"
+										id="ecEmailValidate"
+										onblur="validateEcEmail()"
+										pattern="^[a-zA-Z0-9._%+-]{5,30}+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+										maxlength="30"
+										placeholder="Email@Domain.com"
+										title="Example: Email@Domain.com"
+									>
+									</input>
+							</td>
+							<td>
+								<span class="errMsg" id="ecPhoneErrorMsg"></span>
+								<span class="errMsg" id="ecEmailErrorMsg"></span>
+							</td>	
+						</tr>
+					</tbody>
+				<table>
+			<hr>
+				<!-- Creating section header for the Medical History-->
+				<table>
+					<tr>
+						<th 
+							class="form-headers" 
+							colspan="3" 
+						>
+							Medical History
+						</th>
+					</tr>
+				</table>
+			<hr>
+				<table>	
+					<tbody>
+						<tr>
+							<td>
+								<p 
+									class="instructions"
+								>
+									<em>Check below if you have had or currently have any of the following:</em>
+							</p>
+							</td>
+						</tr>
+						<tr>
+							<!--Making checkboxes that user can check multiple boxes based on conditions they have in their 
+							medical history-->
+							<td class="medhistory-1">
+								
+								<input 
+									type="checkbox" 
+									name="chickenpox" 
+									id="chickenpox" 
+									class="medhist-checkbox"
+								>
+								</input>
+								<label
+									for="chickenpox">
+									Chickenpox
+								</label>
+							<br>
+									
+								<input 
+									type="checkbox" 
+									name="measles" 
+									id="measles" 
+									class="medhist-checkbox"
+								>
+								</input>
+								
+								<label
+									for="measles">
+									Measles
+								</label>
+							<br>	
+						
+								<input 
+									type="checkbox" 
+									name="blackplague" 
+									id="blackplague" 
+									class="medhist-checkbox"
+								>
+								</input>
+								<label
+									for="blackplague">
+									Black Plague
+								</label>
+							<br>
+							
+								<input 
+									type="checkbox" 
+									name="Cooties" 
+									id="Cooties" 
+									class="medhist-checkbox"
+								>
+								</input>
+								<label
+									for="Cooties">
+									Cooties
+								</label>
+							<br>	
+					
+								<input 
+									type="checkbox" 
+									name="mental-illness" 
+									id="mental-illness" 
+									class="medhist-checkbox"
+								>
+								</input>
+								<label
+									for="mental-illness">
+									Mental Illness
+								</label>
+							</td>	
+						</tr>
+						<tr>
+							<td class="medhistory-1">
+							
+								<input 
+									type="checkbox" 
+									name="hypertension" 
+									id="hypertension" 
+									class="medhist-checkbox"
+								>
+								</input>
+								<label
+									for="hypertension">
+									Hypertension
+								</label>
+							<br>	
+								
+								<input 
+									type="checkbox" 
+									name="thyroid" 
+									id="thyroid" 
+									class="medhist-checkbox"
+								>
+								</input>
+								<label
+									for="thyroid">
+									Thyroid Issues
+								</label>
+							<br>
+								
+								<input 
+									type="checkbox" 
+									name="diabetes" 
+									id="diabetes" 
+									class="medhist-checkbox"
+								>
+								</input>
+								<label
+									for="diabetes">
+									Diabetes
+								</label>
+							<br>
+								
+								<input 
+									type="checkbox" 
+									name="heartdisease" 
+									id="heartdisease" 
+									class="medhist-checkbox"
+								>
+								</input>
+								<label
+									for="heartdisease">
+									Heart Disease
+								</label>
+							<br>
+								
+								<input 
+									type="checkbox" 
+									name="anxiety" 
+									id="anxiety" 
+									class="medhist-checkbox"
+								>
+								</input>
+								<label
+									for="anxiety">
+									Anxiety
+								</label>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			<hr>
+				<!-- Creating section header for the Current Health Issues-->
+				<table>
+					<tr>
+						<th 
+							class="form-headers" 
+							colspan="3" 
+						>
+							Current Health Issues
+						</th>
+					</tr>
+				</table>
+			<hr>
+				<table>
+					<tbody>
+						<tr>
+							<td>
+								<p 
+									class="health"
+								>
+									<em>Briefly describe any current health issues:</em>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<!--Creating free text area for patient to enter in health concerns-->
+								<textarea
+									rows="8"
+									cols="112"
+									maxlength="500"
+									id="health-form"
+									name="health-form"
+									class="health-form"
+									title="Please describe any current health issues"
+								>
+								</textarea>
+															
+								<p
+									class="health-slider"
+								>
+								<em>On a scale of 1 to 10, 10 being the best, how would you rate your overall health?<em>
+								</p>
+								
+								<!--Creating range slider with min value of 0 and max value of 10-->
+								<div id="slider">
+									<label 
+										for="health-slide"
+										class="slider-start"
+									>
+										<em>Not healthy<em>
+									</label>
+
+									<input
+										type="range"
+										id="health-slide"
+										name="healthSlider"
+										min="1"
+										max="10"
+										value="1"
+										step="1"
+										title="Slide from left to right based on how you would rate your overall health"
+									>
+									</input>
+									<span class="sliderNumbers" id="sliderNums"></span>
+									<!--Adding in text on each end of the slider to show what each side means to the user-->
+									<label 
+										for="health-slide"
+										class="slider-end">
+										<em>Very healthy<em>
+									</label>
+								</div>
+							</td>
+						</tr>
+					</tbody>	
+				</table>		
+			<hr>
+				<!-- Creating section header to Create Account-->
+				<table>
+					<tr>
+						<th 
+							class="form-headers" 
+							colspan="3" 
+						>	
+							Create Your Account
+						</th>
+					</tr>
+				</table>
+			<hr>
+				<table>	
+					<tbody>
+						<tr>
+							<!--Adding class of instructions so I can style and resize the password instructions-->
+							<td class="instructions">
+								<label
+									for="userIdValidate"
+									id="required"
+								>	
+									Username
+								</label>
+									<input 
+										type="text" 
+										name="userName"
+										autocomplete="off" 
+										id="userIdValidate"
+										onblur="validateUserId()"
+										oninput="validateUserId()"
+										placeholder="Username"
+										title="Username must be 5 to 30 characters (Only letters, numbers(but first character cannot be a number), underscore or dashes allowed. No other special characters and No Spaces)"
+										minlength="5" 
+										maxlength="30"
+										required
+									>
+									</input>
+							</td>
+							<td>
+								<span class="errMsg" id="userIdErrorMsg"></span>
+							</td>
+					</tbody>
+				</table>
+				<table>
+					<tbody>
+						</tr>
+						<tr>
+							<td class="instructions">
+									<p id="pass-text">Password Requirements:<p>
+									<div id="reqmstr">
+										<div id="req1">
+											<li>
+												<ul class="other" id="lengthReq"><em>Must be between 8 and 32 characters</em></ul>
+											</li>
+											<li>
+												<ul class="other" id="letterReq"><em>Contain at least 1 lowercase letter</em></ul>
+											</li>
+										</div>
+										<div id="req2">
+											<li>
+												<ul class="other" id="capReq"><em>Contain at least 1 uppercase letter</em></ul>
+											</li>
+											<li>
+												<ul class="other" id="numberReq"><em>Contain 1 number (0-9)</em></ul>
+											</li>
+										</div>
+										<div id="req3">
+											<li>
+												<ul class="other" id="spCharReq"><em>Contain a special character</em></ul>
+											</li>
+											<li>
+												<ul class="other" id="passMatch"><em>Passwords must match</em></ul>
+											</li>
+										</div>
+									</div>
+							</td>	
+						</tr>
+						<tr>
+							<td class="password">
+								<label
+									for="passwordValidate"
+									id="required"
+								>
+									Password
+								</label>
+									<input 
+										type="password" 
+										name="password" 
+										id="passwordValidate"
+										onfocus="validatePassword()"
+										ononkeyup = "validatePassword()"
+										pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,32}$"
+										placeholder="Password"
+										title="Password must be 8 to 32 characters long, contain at least 1 upper case letter, 1 lowercase letter, 1 number and 1 special character."
+                    minlength="8"
+                    maxlength="32" 
+										required
+									>
+									</input>
+								<label
+									for="repeatPassword"
+									class="repeatPassword"
+									id="required"
+								>
+									Confirm Password
+								</label>
+									<input 
+										type="password" 
+										name="repeatPassword" 
+										id="repeatPassword"
+										onfocus="validatePassword()"
+										ononkeyup = "validatePassword()"
+										placeholder="Repeat Password"
+										pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,32}$"
+										title="Re-enter password (Passwords must match)"
+                    minlength="8"
+                    minlength="8"
+                    maxlength="32"
+										required
+									>
+									</input>
+							</td>
+						</tr>
+						<tr>
+
+							<!--Creating the submit and reset buttons. Added in the script to connect the submit button to
+							the thank-you page below-->
+							<td class="buttons">
+								<button 
+									type="button"
+									id="review"
+									value="Review"
+									onclick="reviewData()"
+								>
+								Review
+								</button>
+
+								<button 
+									type="submit"
+									id="submit"
+								>
+									Submit
+								</button>
+																	
+								<button 
+									type="reset"
+									id="clearButton"
+								>
+									Clear and Start Over
+								</button>
+								
+							</td>	
+						</tr>
+					</tbody>						
+				</table>
+
+				<!--Placeholder to bring in the footer-->
+      <div id="footerPlaceholder"></div>
+		<hr>
+		<hr>
+			<!--Placeholder for re-displaying the inputted data-->  
+			<span id="infoReview"></span>
+		</form>
+		<!--Retrieving the javascript file-->
+		<script
+			src="hw3Script.js"
+		>
+		</script>
+	</body>
+</html>
+
+
+

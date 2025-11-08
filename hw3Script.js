@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', (event) =>
     numChangeSlider();
     setDate();
     getFooter();
+    getStateList();
   })
 
 // Adding in script to get current date and return it. Originally found on W3schools.com then modified
@@ -32,7 +33,7 @@ function setDate()
     document.getElementById ("currentDate").innerHTML = getDate(); 
   }
 
-/*<!--Adding script to bring footer into form. Script found at 
+/*Adding script to bring footer into form. Script found at 
 https://stackoverflow.com/questions/63663201/i-use-a-fetch-statement-to-retrieve-my-html-footer-and-include-it-on-every-page*/
 function getFooter() 
   {
@@ -42,6 +43,18 @@ function getFooter()
     document.getElementById('footerPlaceholder').innerHTML = data;
     })
     .catch(error => console.error('Error loading footer:', error));
+  }
+
+  /*Created function using fetch API to retrieve the option list for the dropdown state list*/
+  function getStateList() 
+  {
+    fetch('hw3-states.html')
+    .then(response => response.text())
+    .then(data => {
+    document.getElementById("state").innerHTML = data;
+    })
+    .catch(error => console.error('Error loading list:', error));
+
   }
 
   //Validating the first name. The display on the css file is set to none but changes to block when the error is present. 
@@ -114,17 +127,17 @@ function validateSsn()
   {
     const ssnValid = document.getElementById("ssnValidate").value;
     if(ssnValid.length < 9) {
-      document.getElementById("ssnErrorMsg").innerHTML = "Error: SSN must be 9 to 11 characters";
+      document.getElementById("ssnErrorMsg").innerHTML = "Error: SSN must be 9 characters";
       ssnErrorMsg.style.display = "block";
       errorFlag = 1;
     }
     else {
-      if (ssnValid.match(/[0-9]{3,3}?[-]?[0-9]{2,2}?[-]?[0-9]{4,4}$/)) {
+      if (ssnValid.match(/^\d+$/)) {
         document.getElementById("ssnErrorMsg").innerHTML = "";
         ssnErrorMsg.style.display = "none";
       }
       else {
-        document.getElementById("ssnErrorMsg").innerHTML = "SSN Error: (Invalid or missing characters. Must be in 555-55-2222 or 555552222 format)";
+        document.getElementById("ssnErrorMsg").innerHTML = "SSN Error: (Invalid or missing characters. Must be in 555552222 format, no dashes, numbers only)";
         ssnErrorMsg.style.display = "block";
         errorFlag = 1;
       }
@@ -161,6 +174,30 @@ function validateDob()
         dateErrorMsg.style.display = "none";
     }
   }
+
+/* Followed tutorial for phone number formatting in javascript at this link
+https://www.youtube.com/watch?v=3Cl03G2cyAA*/
+function formatPhoneNumber(value) {
+  if (!value) return value;
+  const phoneNumber = value.replace(/[^\d]/g,'');
+  const phoneNumberLength = phoneNumber.length;
+  if (phoneNumberLength <4) return phoneNumber;
+  if (phoneNumberLength <7) {
+    return `${phoneNumber.slice(0, 3)}-${phoneNumber.slice(3)}`;
+  }
+  return `${phoneNumber.slice(0, 3)}-${phoneNumber.slice(
+    3,
+    6,
+  )}-${phoneNumber.slice(6, 10)}`;
+}
+
+/* Followed tutorial for phone number formatting in javascript at this link
+https://www.youtube.com/watch?v=3Cl03G2cyAA This script formats the phone number to auto generate the dashes*/
+function phoneNumFormatter() {
+  const inputField = document.getElementById("phoneValidate");
+  const formattedInputValue = formatPhoneNumber(inputField.value);
+  inputField.value = formattedInputValue;
+}
 //Validating the phone number.
 function validatePhone() 
   {
@@ -330,6 +367,14 @@ function validateEcLname()
       }
     }
   }
+
+/* Followed tutorial for phone number formatting in javascript at this link
+https://www.youtube.com/watch?v=3Cl03G2cyAA This script formats the phone number to auto generate the dashes*/
+function ecPhoneNumFormatter() {
+  const inputField = document.getElementById("ecPhoneValidate");
+  const formattedInputValue = formatPhoneNumber(inputField.value);
+  inputField.value = formattedInputValue;
+}
 
 function validateEcPhone() 
   {
